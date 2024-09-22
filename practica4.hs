@@ -6,5 +6,3 @@ fibonacci n = fibonacci (n-1) + fibonacci (n-2)
 
 -- Ejercicio 2
 parteEntera :: Float -> Integer
--- test
-gi
