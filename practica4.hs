@@ -91,3 +91,54 @@ factorial 0 = 1
 factorial n = factorial (n-1) * n 
 
 -- Ejercicio 12
+raizDe2Aprox :: Integer -> Float 
+raizDe2Aprox 1 = 1
+raizDe2Aprox n = suc n - 1  
+
+suc :: Integer -> Float 
+suc 1 = 2
+suc n = 2 + (1/suc (n-1))
+
+-- Ejercicio 13
+sumatoriaExterna :: Integer -> Integer -> Integer
+sumatoriaExterna 1 m = sumatoriaInterna 1 m
+sumatoriaExterna n m = sumatoriaExterna (n-1) m + sumatoriaInterna n m 
+
+sumatoriaInterna :: Integer -> Integer -> Integer 
+sumatoriaInterna n 1 = n
+sumatoriaInterna n m = sumatoriaInterna n (m-1) + n^m
+
+-- Ejercicio 16
+-- a)
+menorDivisor :: Integer -> Integer 
+menorDivisor 2 = 2
+menorDivisor n = menorDivisorDesde n 2 
+
+menorDivisorDesde :: Integer -> Integer -> Integer 
+menorDivisorDesde n i
+  | mod n i == 0 = i 
+  | otherwise = menorDivisorDesde n (i+1) 
+
+-- b)
+esPrimo :: Integer -> Bool 
+esPrimo n = menorDivisor n == n 
+
+-- c)
+sonCoprimos :: Integer -> Integer -> Bool 
+sonCoprimos x y 
+  | x == 1 || y == 1 = True
+  | esPrimo x && esPrimo y = True 
+  | mod x y == 0 || mod y x == 0 = False 
+  | menorDivisor x == menorDivisor y = False 
+  | menorDivisor x /= menorDivisor y = True 
+  | otherwise = False 
+
+-- d)
+nEsimoPrimo :: Integer -> Integer 
+nEsimoPrimo 1 = 2 
+nEsimoPrimo n = proximoPrimo (nEsimoPrimo (n - 1))
+
+proximoPrimo :: Integer -> Integer 
+proximoPrimo n
+  | esPrimo (n+1) = n + 1 
+  | otherwise = proximoPrimo (n+1)
