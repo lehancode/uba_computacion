@@ -180,4 +180,3 @@ def viajar_hasta_aristoteles2(año_partida: int) -> None:
   for num in range(año_partida, 384, -20):
     año_partida -= 20
     print("Viajo 20 años en el pasado, estamos en el año:", año_partida)
-
