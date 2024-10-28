@@ -398,4 +398,31 @@ def historial_SUBE() -> list[(chr,int)]:
   print("Su saldo actual es de " + str(saldo) + "pesos")
   return historial 
 
-# 3)
+# 3) te la debo
+
+# 4)
+def tieneMayuscula(contraseña: str) -> bool:  
+  for letra in contraseña:
+    if ('A' <= letra <= 'Z') or letra == 'Ñ':
+      return True
+  return False
+
+def tieneMinuscula(contraseña: str) -> bool:
+  for letra in contraseña:
+    if ('a' <= letra <= 'z') or letra == 'ñ':
+      return True
+  return False
+
+def tieneDigit(contraseña: str) -> bool:
+  for letra in contraseña:
+    if '0' <= letra <= '9':
+      return True
+  return False
+
+def fortaleza(contraseña: str) -> str:
+  if len(contraseña) < 5:
+    return "ROJA"
+  elif tieneDigit(contraseña) and tieneMayuscula(contraseña) and tieneMinuscula(contraseña):
+    return "VERDE"
+  else:
+    return "AMARILLA"
