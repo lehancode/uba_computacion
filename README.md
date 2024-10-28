@@ -1,1 +1,1 @@
-Guias practicas - Introducción a la Programación 2024 - UBA
+Guias practicas del 2do cuatrimestre 2024 - Introducción a la Programación - UBA
