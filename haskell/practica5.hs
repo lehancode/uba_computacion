@@ -1,4 +1,4 @@
--- Ejercicio 2
+-- Ejercicio 2 
 -- 5)
 -- Guardas
 quitar :: (Eq t) => t -> [t] -> [t]
