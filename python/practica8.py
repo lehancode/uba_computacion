@@ -444,3 +444,91 @@ def la_palabra_mas_frecuente(nombre_archivo: str) -> str:
 #print(la_palabra_mas_frecuente("texto.txt"))
 
 # 19)
+historiales: dict[str,pila[str]] = {}
+
+def visitar_sitio(historiales: dict[str, pila[str]], usuario: str, sitio: str) -> None:
+  if usuario not in historiales.keys():
+    historiales[usuario] = pila() 
+  historiales[usuario].put(sitio)
+
+def navegar_atras(historiales: dict[str,pila[str]], usuario: str) -> None:
+  if usuario in historiales.keys():
+    historial: pila = historiales[usuario]
+    if not historial.empty():
+      sitio_actual = historial.get()
+      sitio_anterior = historial.get()
+      historial.put(sitio_actual)
+      historial.put(sitio_anterior)
+
+visitar_sitio(historiales, "martin", "facebook.com")
+visitar_sitio(historiales, "franco", "instagram.com")
+visitar_sitio(historiales, "franco", "youtube.com")
+visitar_sitio(historiales, "martin", "pinterest.com")
+#(historiales)
+#print("franco: ", historiales["franco"].queue)
+#print("martin: ", historiales["martin"].queue)
+
+navegar_atras(historiales, "martin")
+#print("hacia atras <--")
+#print("martin: ", historiales["martin"].queue)
+
+visitar_sitio(historiales, "Usuario1", "google.com")
+visitar_sitio(historiales, "Usuario1", "facebook.com")
+#print("1: ", historiales["Usuario1"].queue)
+navegar_atras(historiales, "Usuario1")
+visitar_sitio(historiales, "Usuario2", "youtube.com")
+
+#print("1: ", historiales["Usuario1"].queue)
+#print("2: ", historiales["Usuario2"].queue)
+
+# 20)
+inventario: dict[str,dict[str,float|int]] = {} #{"Nombre": {"Precio": precio, "Cantidad": cantidad}}
+
+def agregar_producto(inventario: dict[str,dict[str,float|int]], nombre: str, precio: float, cantidad: int) -> None:
+  inventario[nombre] = {"Precio": precio, "Cantidad": cantidad}
+
+#agregar_producto(inventario, "Bermuda", 15313.25, 16)
+#agregar_producto(inventario, "Pantalon", 35000, 10)
+#print(inventario)
+
+def actualizar_stock(inventario: dict[str,dict[str,float|int]], nombre: str, cantidad: int) -> None:
+  inventario[nombre]['Cantidad'] += cantidad
+
+#actualizar_stock(inventario, "Bermuda", 5)
+#actualizar_stock(inventario, "Pantalon", 10)
+#print(inventario)
+
+def actualizar_precios(inventario: dict[str,dict[str,float|int]], nombre: str, precio: float) -> None:
+  inventario[nombre]["Precio"] = precio
+
+#actualizar_precios(inventario, "Bermuda", 1000)
+#actualizar_precios(inventario, "Pantalon", 550)
+#print(inventario)
+
+def calcular_valor_inventario(inventario: dict[str,dict[str,float|int]]) -> float:
+  valor_inventario: float = 0
+  for producto in inventario.values():
+    valor_inventario += producto["Precio"] * producto["Cantidad"]
+  return valor_inventario
+
+
+agregar_producto(inventario, "Camisa", 20.0, 50)
+agregar_producto(inventario, "Pantalon", 30.0, 30)
+actualizar_stock(inventario, "Camisa", 10)
+valor_total = calcular_valor_inventario(inventario)
+#print("Valor total del inventario:", valor_total) # Deberia imprimir 2100.0
+#print(calcular_valor_inventario(inventario))
+#print(inventario)
+
+# Ejercicio 4 ARCHIVOS
+# 21) 
+# 1)
+def contar_lineas(nombre_archivo: str) -> int:
+  archivo = open(nombre_archivo, 'r')
+  lineas: list[str] = archivo.readlines()
+  archivo.close()
+  return len(lineas)
+
+#print(contar_lineas("texto.txt"))
+
+# 2)
