@@ -532,3 +532,91 @@ def contar_lineas(nombre_archivo: str) -> int:
 #print(contar_lineas("texto.txt"))
 
 # 2)
+def existe_palabra(palabra: str, nombre_archivo: str) -> bool:
+  archivo = open(nombre_archivo, 'r')
+  palabras: list[str] = obtener_palabras(archivo.read())
+  archivo.close()
+  print(palabras)
+  for elem in palabras:
+    if elem == palabra:
+      return True
+  return False
+
+#print(existe_palabra("shortcuts", "texto.txt"))
+
+# 3)
+def cantidad_apariciones(nombre_archivo: str, palabra: str) -> int:
+  archivo = open(nombre_archivo, 'r')
+  palabras: list[str] = obtener_palabras(archivo.read())
+  archivo.close()
+  res: int = 0
+  for elem in palabras:
+    if elem == palabra:
+      res += 1
+  return res
+
+#print(cantidad_apariciones("texto.txt", "I"))
+
+# 22)
+def tiene_comentarios(linea: str) -> bool:
+  indice: int = 0
+  while linea[indice] == ' ' and indice < (len(linea)-1):
+    indice += 1
+  return linea[indice] == '#'
+        
+
+#print(es_comentario("#    esto es comentario"))
+#print(es_comentario("#hola"))
+#print(es_comentario("    hola"))
+#print(es_comentario("hola #esto no"))
+#print(es_comentario("           "))
+
+def clonar_sin_comentarios(nombre_archivo: str) -> None:
+  archivo = open(nombre_archivo, 'r')
+  comentado: list[str] = archivo.readlines()
+  archivo.close()
+  sin_comentarios = open("nuevo_archivo.txt", 'w')
+  for linea in comentado:
+    if not(tiene_comentarios(linea)):
+      sin_comentarios.write(linea)
+  sin_comentarios.close()
+
+#clonar_sin_comentarios("archivos.txt")
+
+# 23)
+def invertir_lineas(nombre_archivo: str) -> None:
+  archivo = open(nombre_archivo, 'r')
+  original: list[str] = archivo.readlines()
+  archivo.close()
+  invertido = open("invertido.txt", 'w')
+  for i in range(len(original)-1, -1, -1):
+    if i == (len(original) - 1):                  # no se porque si no hago esto me escribe la primer y segunda linea seguido, despues las demas bien..
+      invertido.writelines(original[i] + "\n") 
+      continue
+    invertido.writelines(original[i]) 
+  invertido.close()
+
+#invertir_lineas("archivos.txt")
+
+# 24)
+def agregar_frase_al_final(nombre_archivo: str, frase: str) -> None:
+  archivo = open(nombre_archivo, 'r')
+  contenido: str = archivo.read()
+  archivo = open(nombre_archivo, 'w')
+  archivo.write(contenido)
+  archivo.write('\n' + frase)
+  archivo.close()
+
+#agregar_frase_al_final("archivos.txt", "compila?")
+
+# 25)
+def agregar_frase_al_principio(nombre_archivo: str, frase: str) -> None:
+  archivo = open(nombre_archivo, 'r')
+  contenido: list[str] = [frase + '\n'] + archivo.readlines()
+  print(contenido)
+  archivo = open(nombre_archivo, 'w')
+  for linea in contenido:
+    archivo.write(linea)
+  archivo.close()
+
+#agregar_frase_al_principio("archivos.txt", "iara iara")
