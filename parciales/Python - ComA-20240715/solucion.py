@@ -48,7 +48,28 @@ def alarma_epidemiologica(registros: list[tuple[int, str]], infecciosas: list[st
 
 #3
 def empleados_del_mes(horas: dict[int, list[int]]) -> list[int]:
-  return 0
+  horas_por_empleado: dict[int,list[int]] = {}
+  res: list[int] = []
+
+  for empleado in horas.keys():
+    cantidad_horas: int = 0
+    for hs in horas[empleado]:
+      cantidad_horas += hs
+    horas_por_empleado[empleado] = cantidad_horas
+
+  horas_empleados: list[int] = list(horas_por_empleado.values())  
+  horas_mejor_empleado: int = maximo(horas_empleados)
+  for empleado in horas_por_empleado.keys():
+    if horas_por_empleado[empleado] >= horas_mejor_empleado:
+      res.append(empleado)
+  return res      
+    
+def maximo(l: list[int]) -> int:
+  res: int = 0
+  for i in range(len(l)):
+    if l[i] > res:
+      res = l[i]
+  return res    
 
 #4
 def nivel_de_ocupacion(pisos: list[list[bool]]) -> list[float]:
