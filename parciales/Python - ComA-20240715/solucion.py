@@ -73,4 +73,12 @@ def maximo(l: list[int]) -> int:
 
 #4
 def nivel_de_ocupacion(pisos: list[list[bool]]) -> list[float]:
-  return 0
+  ocupacion: list[float] = []
+  camas_por_piso: int = len(pisos[0])
+  for piso in pisos:
+    contador: int = 0
+    for cama in piso:
+      if cama == True:
+        contador += 1
+    ocupacion.append(contador / camas_por_piso)
+  return ocupacion 
