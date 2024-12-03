@@ -95,3 +95,26 @@ def pertenece(l: list[T], objeto: T) -> bool:
     if objeto == elem:
       return True 
   return False 
+
+# def palabras_por_vocales(texto: str) -> dict[int, int]:    # aca una forma mejor de hacerlo
+#    texto += ' '
+#    palabras: list[str] = []
+#    palabra_actual: str = ""
+#    for c in texto:
+#        if c == ' ':
+#            if len(palabra_actual) != 0:
+#                palabras.append(palabra_actual)
+#                palabra_actual = ""
+#        else:
+#            palabra_actual += c
+#    res: dict[int, int] = {}
+#    for palabra in palabras:
+#        vocales_de_palabra: int = 0
+#        for c in palabra:
+#            vocales_de_palabra += int(c in "aeiouAEIOU")
+#        if vocales_de_palabra in res:
+#            res[ vocales_de_palabra ] += 1
+#        else:
+#            res[ vocales_de_palabra ] = 1        
+#    return res
+#
